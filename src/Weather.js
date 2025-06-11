@@ -44,11 +44,15 @@ const Weather = () => {
       {weather && (
         <div style={{ marginTop: '1rem' }}>
           <h3>{weather.location.name}, {weather.location.country}</h3>
-          <p>{weather.current.temp_c}°C</p>
-          <p>{weather.current.condition.text}</p>
+          <p>Temperature: {weather.current.temp_c}°C</p>
+          <p>Humidity: {weather.current.humidity}%</p>
+          <p>Wind Speed: {weather.current.wind_kph} kph</p>
+          <p>UV Index: {weather.current.uv}</p>
           <img src={weather.current.condition.icon} alt="weather icon" />
+          <p>{weather.current.condition.text}</p>
         </div>
       )}
+
     </div>
   );
 };
