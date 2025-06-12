@@ -94,13 +94,19 @@ const Weather = () => {
       <div className="relative z-10 bg-white bg-opacity-90 p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Weather Reporter</h2>
         <div className="flex space-x-2 mb-4">
-          <input
-            type="text"
-            placeholder="Enter city name"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="flex-1 border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-          />
+        <input
+          type="text"
+          placeholder="Enter city name"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              fetchWeather();
+            }
+          }}
+          className="flex-1 border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+        />
+
           <button
             onClick={fetchWeather}
             className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
