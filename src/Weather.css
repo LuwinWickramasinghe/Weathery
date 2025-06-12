@@ -1,0 +1,68 @@
+.day {
+  color: #ffffff;
+  background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+}
+.night {
+  color: #ffffff;
+  background: linear-gradient(to bottom, #1C2526, #2C3E50);
+}
+.weather-background {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.8;
+  transition: background-image 0.5s ease-in-out;
+}
+.day-sunny {
+  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+}
+.day-rainy {
+  background-image: url('https://images.unsplash.com/photo-1534278932160-9f3f1d47a3df');
+}
+.day-cloudy {
+  background-image: url('https://images.unsplash.com/photo-1499956827182-0dex0e0b262');
+}
+.day-snowy {
+  background-image: url('https://images.unsplash.com/photo-1511130190748-6e33f281111f');
+}
+.night-clear {
+  background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba');
+}
+.night-rainy {
+  background-image: url('https://images.unsplash.com/photo-1501696461415-6f2b24ac8b34');
+}
+.night-cloudy {
+  background-image: url('https://images.unsplash.com/photo-1503431128871-8d7d2f46c6c1');
+}
+.night-snowy {
+  background-image: url('https://images.unsplash.com/photo-1483664852095-d6cc6870702d');
+}
+.rain-effect, .snow-effect {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  animation: fall 1s linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+.snowflake {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: white;
+  border-radius: 50%;
+  animation: snowFall 3s linear infinite;
+}
+@keyframes snowFall {
+  to { transform: translateY(100vh) rotate(360deg); }
+}
