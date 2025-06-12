@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import "./Weather.css"; 
 
 const Weather = () => {
@@ -10,6 +10,11 @@ const Weather = () => {
   const [weatherClass, setWeatherClass] = useState('');
 
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+
+  useEffect(() => {
+      const hour = new Date().getHours();
+      setTheme(hour >= 10 && hour < 22 ? 'day' : 'night');
+  }, []);
 
   const fetchWeather = async () => {
     if (!city) return;
@@ -45,9 +50,47 @@ const Weather = () => {
     }
   };
 
+    const renderRainEffect = () => {
+    if (weatherClass !== 'rainy') return null;
+    return (
+      <div className="rain-effect">
+        {Array.from({ length: 100 }).map((_, i) => (
+          <div
+            key={i}
+            className="raindrop"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  const renderSnowEffect = () => {
+    if (weatherClass !== 'snowy') return null;
+    return (
+      <div className="snow-effect">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="snowflake"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
   return (
       <div className={`min-h-screen flex items-center justify-center ${theme}`}>
       <div className={`weather-background ${cityTheme}-${weatherClass} absolute inset-0`} />
+      {renderRainEffect()}
+      {renderSnowEffect()}
       <div className="relative z-10 bg-white bg-opacity-90 p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Weather Reporter</h2>
         <div className="flex space-x-2 mb-4">
