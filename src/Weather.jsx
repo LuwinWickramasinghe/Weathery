@@ -11,6 +11,9 @@ const Weather = () => {
   const [showSuggestions, setShowSuggestions] = useState(true); 
   const suggestedCities = ['Colombo', 'NuwaraEliya', 'Gampaha', 'Negombo', 'Kandy', 'Matara', 'Jaffna', 'Batticaloa', 'Trincomalee', 'Anuradhapura']; 
 
+  const [forecast, setForecast] = useState(null);
+
+
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
   useEffect(() => {
@@ -24,7 +27,7 @@ const Weather = () => {
 
     try {
       const res = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${searchCity}&aqi=no`
+        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${searchCity}&days=5`
       );
       const data = await res.json();
 
@@ -33,6 +36,7 @@ const Weather = () => {
         setWeather(null);
         setCityTheme('');
         setWeatherClass('');
+        setForecast(null);
       } else {
         setWeather(data);
         setError('');
@@ -44,14 +48,19 @@ const Weather = () => {
         else if (condition.includes('snow')) setWeatherClass('snowy');
         else if (condition.includes('sunny')) setWeatherClass('sunny');
         else setWeatherClass('default');
+
+        setForecast(data.forecast?.forecastday);
       }
     } catch (err) {
       setError('Failed to fetch weather');
       setWeather(null);
       setCityTheme('');
       setWeatherClass('');
+      setForecast(null);
     }
   };
+
+
 
   const handleSuggestionClick = (selectedCity) => {
     setCity(selectedCity);
@@ -119,7 +128,6 @@ const Weather = () => {
           </button>
         </div>
 
-        {/* Suggestions Section */}
         {showSuggestions && (
           <div className="flex flex-wrap gap-4 mb-6 justify-center">
             {suggestedCities.map((c) => (
@@ -157,6 +165,28 @@ const Weather = () => {
             </p>
           </div>
         )}
+
+        {forecast && (
+          <div className="mt-6">
+            <h4 className="text-lg font-semibold text-gray-800 mb-4">
+              5-Day Forecast:
+            </h4>
+            <div className="flex gap-4 overflow-x-auto">
+              {forecast.map((day) => (
+                <div
+                  key={day.date}
+                  className="flex-shrink-0 p-4 bg-gray-100 rounded-lg shadow-md text-center w-32 text-gray-700">
+                  <p className="font-semibold">{day.date}</p>
+                  <img src={day.day.condition.icon} alt="Weather icon" className="mx-auto" />
+                  <p>{day.day.condition.text}</p>
+                  <p>Max: {day.day.maxtemp_c}°C</p>
+                  <p>Min: {day.day.mintemp_c}°C</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
 
       </div>
     </div>
