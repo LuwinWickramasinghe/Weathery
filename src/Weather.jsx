@@ -60,7 +60,7 @@ const Weather = () => {
       setWeatherClass('');
       setForecast(null);
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   };
 
