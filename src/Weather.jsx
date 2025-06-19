@@ -29,7 +29,7 @@ const Weather = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${searchCity}&days=5`
+        `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${searchCity}&days=5`
       );
       const data = await res.json();
 
