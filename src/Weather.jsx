@@ -12,6 +12,7 @@ const Weather = () => {
   const suggestedCities = ['Colombo', 'NuwaraEliya', 'Gampaha', 'Negombo', 'Kandy', 'Matara', 'Jaffna', 'Batticaloa', 'Trincomalee', 'Anuradhapura']; 
 
   const [forecast, setForecast] = useState(null);
+  const [loading, setLoading] = useState(false);
 
 
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -25,6 +26,7 @@ const Weather = () => {
     const searchCity = selectedCity || city;
     if (!searchCity) return;
 
+    setLoading(true);
     try {
       const res = await fetch(
         `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${searchCity}&days=5`
@@ -57,9 +59,10 @@ const Weather = () => {
       setCityTheme('');
       setWeatherClass('');
       setForecast(null);
+    } finally {
+      setLoading(true);
     }
   };
-
 
 
   const handleSuggestionClick = (selectedCity) => {
@@ -186,6 +189,13 @@ const Weather = () => {
             </div>
           </div>
         )}
+
+        {loading && (
+          <div className="flex justify-center my-6">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-gray-500"></div>
+          </div>
+        )}
+
 
 
       </div>
