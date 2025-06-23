@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# ☀️ Weathery – React Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Weathery is a simple and visually appealing weather app built with React and Tailwind CSS. It fetches real-time weather data from the WeatherAPI and updates the UI dynamically based on weather conditions. The app also includes visual effects like rain and snow to enhance user experience.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+* 🔍 Search weather by city name
+* 🎨 Dynamic background and styles based on weather and time (day/night)
+* 💧 Weather effects (rain/snow animations)
+* 📊 Displays temperature, humidity, wind speed, and UV index
+* ⌨️ Press Enter to fetch weather (keyboard support)
+* 🌍 Suggestions for Sri Lankan cities (optional feature)
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* [React](https://reactjs.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [WeatherAPI](https://www.weatherapi.com/)
+* [Vercel](https://vercel.com/) for deployment
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ⚙️ Installation
 
-### `npm test`
+### Step 1: Clone the Repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/your-username/weathery.git
+cd weathery
+```
 
-### `npm run build`
+### Step 2: Install Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Step 3: Set Up Environment Variables
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create a `.env` file in the root of your project and add your WeatherAPI key:
 
-### `npm run eject`
+```env
+REACT_APP_WEATHER_API_KEY=your_api_key_here
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> ⚠️ Make sure the variable name starts with `REACT_APP_`, otherwise Create React App won’t expose it to the frontend.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Step 4: Start the Development Server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Visit `http://localhost:3000` to view the app in your browser.
 
-## Learn More
+## 🧑‍💻 Development Notes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* The background changes depending on the weather and time (day/night).
+* Includes animated effects for rainy and snowy conditions.
+* Pressing the Enter key also fetches the weather data.
+* Weather API requests must use `https://` to avoid mixed content issues during deployment on HTTPS domains like Vercel.
+* Git branch mismatch (`master` vs `main`) was resolved during deployment.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📦 Deployment
 
-### Code Splitting
+This app is deployed using Vercel.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Live Site:**
+👉 [https://weathery.vercel.app](https://weathery.vercel.app)
 
-### Analyzing the Bundle Size
+> Note: During deployment, ensure that environment variables (like `REACT_APP_WEATHER_API_KEY`) are set via Vercel’s dashboard under **Project Settings → Environment Variables**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
